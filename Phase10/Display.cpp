@@ -335,3 +335,13 @@ void endGame(std::vector<Player> p) {
 		std::cout << std::endl;
 	}
 }
+
+void errLoadingSave(){
+	clear();
+	showLogo();
+	std::cout << "--------------------------------------------------------------------------------";
+	std::cout << std::setw(19) << " " << "Es konnte kein Spielstand gefunden werden!" << std::endl;
+	std::cout << "--------------------------------------------------------------------------------";
+
+	waitForEnter();
+}

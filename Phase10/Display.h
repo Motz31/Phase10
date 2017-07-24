@@ -24,3 +24,4 @@ void stoppedText();
 void RoundEndScreen(Player, std::vector<Player>, int, std::vector<Phase>);
 void showSettings(int,bool,int);
 void endGame(std::vector<Player>);
+void errLoadingSave();

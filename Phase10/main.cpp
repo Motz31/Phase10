@@ -41,8 +41,8 @@ int main() {
 					std::vector<Player> LPlayers;
 					std::stack<Card> LdCards;
 					std::vector<Phase> LPhases;
-					loadGame(LAP, LPlayers, LdCards, LRound, LPhases);
-
+					if (!loadGame(LAP, LPlayers, LdCards, LRound, LPhases))
+						break;						
 					ActivePlayer = LAP;
 					Players = LPlayers;
 					dCards = LdCards;
