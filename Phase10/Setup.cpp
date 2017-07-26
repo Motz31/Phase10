@@ -143,7 +143,6 @@ bool loadGame(int& LAP, std::vector<Player>& Lp, std::stack<Card>& LdCards, int&
 	std::fstream file("save.txt", std::ios::in);
 
 	if (!file) {
-		std::cout << "Fehler: Datei konnte nicht gefunden oder ge" << (char)148 << "ffnet werden!" << std::endl << std::endl;
 		errLoadingSave();
 		return false;
 	}

@@ -327,7 +327,7 @@ void endGame(std::vector<Player> p) {
 
 			std::cout << std::setw(_width/2) << " " << PPlaces[x].getName() << std::endl;
 			x++;
-			if (PPlaces.size() <= x + 1)
+			if (PPlaces.size() <= x)
 				break;
 		} while (PPlaces[x - 1].getScore() == PPlaces[x].getScore() && PPlaces[x - 1].getPhase() == PPlaces[x].getPhase());
 

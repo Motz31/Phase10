@@ -140,16 +140,14 @@ int main() {
 											clear();
 											playerCards(Players[ActivePlayer], Phases);
 
-											if (Players[ActivePlayer].downThisRound) {
+											if (Players[ActivePlayer].downThisRound)
 												cout << endl << "Sie haben ihre Phase bereits abgelegt!" << endl << endl;
-											}
 											else {
 												if (Players[ActivePlayer].getPhaseComplete())
 													expandDownCards(Players[ActivePlayer], Players, Phases);
 												else
-													Players[ActivePlayer] = finishPhase(Players[ActivePlayer], Phases);
+													finishPhase(Players[ActivePlayer], Phases);
 											}
-										waitForEnter();
 										}
 										break;
 									}
@@ -184,7 +182,7 @@ int main() {
 								for (int i = 0; i < Players.size(); i++) {
 									if (Players[i].getPhase() == 10 && Players[i].getPhaseComplete()) {
 										for (int k = 0; k < Players.size(); k++) {
-											Players[i].addScore();
+											Players[k].addScore();
 										}
 										endGame(Players);
 										waitForEnter();

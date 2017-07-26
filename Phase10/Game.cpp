@@ -142,32 +142,33 @@ bool checkEnd(Player p){
 
 Player swapCards(Player p, std::vector<Phase> Phases){
 	int Card1 = 15, Card2 = 15;
-	while (Card1 > 11 || Card1 < 1) {
+	while (Card1 > 11 || Card1 < 0) {
 		clear();
 		playerCards(p, Phases,true);
 
-		std::cout << "Welche Karten sollen miteinander getauscht werden?" << std::endl;
+		std::cout << "Welche Karten sollen miteinander getauscht werden? (zum Abbrechen 0 eingeben)" << std::endl;
 		std::cout << "Karte 1: ";
 		std::cin >> Card1;
 	}
 
-	while (Card2 > 11 || Card2 < 1) {
+	while ((Card2 > 11 || Card2 < 0) && Card1 != 0) {
 		clear();
 		playerCards(p, Phases,true);
 
-		std::cout << "Welche Karten sollen miteinander getauscht werden?" << std::endl;
+		std::cout << "Welche Karten sollen miteinander getauscht werden? (zum Abbrechen 0 eingeben)" << std::endl;
 		std::cout << "Karte 1: " << Card1 << std::endl;
 		std::cout << "Karte 2: ";
 		std::cin >> Card2;
 	}
+	if (Card1 != 0 && Card2 != 0) {
+		Card1--;
+		Card2--;
 
-	Card1--;
-	Card2--;
-
-	Card temp = p.getCard(Card1);
-	p.setCard(Card1, p.getCard(Card2));
-	p.setCard(Card2, temp);
-
+		Card temp = p.getCard(Card1);
+		p.setCard(Card1, p.getCard(Card2));
+		p.setCard(Card2, temp);
+	}
+	
 	return p;
 }
 
@@ -183,55 +184,66 @@ void expandDownCards(Player& player, std::vector<Player>& p, std::vector<Phase> 
 		std::cout << std::endl;
 		showDownCards(p, Phases, true, true, false);
 
-		std::cout << "Bei welchen Spieler willst du eine Karte ablegen? ";
+		std::cout << "Bei welchem Spieler willst du eine Karte ablegen? (zum Abbrechen 0 eingeben) ";
 		std::cin >> SecPlayer;
-	} while (SecPlayer <= 0 || SecPlayer > p.size() || p[SecPlayer - 1].getPhaseComplete() == false);
+		if (SecPlayer == 0)
+			return;
+	} while (SecPlayer < 1 || SecPlayer > p.size() || p[SecPlayer - 1].getPhaseComplete() == false);
 	
 	SecPlayer--;
 
 	/*Teil auswahl*/
-	do {
-		clear();
-		playerCards(player, Phases);
-		std::cout << std::endl;
-		std::vector<std::vector<Card>> Cards = p[SecPlayer].getDownCards();
-
-		for (int k = 0; k < Phases[p[SecPlayer].getPhase() - 1].getParts(); k++) {
-			std::cout << " " << k + 1 << " | ";
-
-			int Length = Cards[k].size();
-
-			/*Die Karten werden dargestellt*/
-			for (int l = 0; l < Length; l++) {
-				std::string Color = Cards[k][l].getColor();
-				std::string Number = std::to_string(Cards[k][l].getValue());
-
-				/*Jolly und Aussetzer korrektur*/
-				if (Number == "13") {
-					Number = "**";
-				}
-				if (Number == "14") {
-					Number = "!!";
-				}
-				std::cout << std::setfill('0');
-				std::cout << std::setw(1) << Color << std::setw(2) << Number << " | ";
-				std::cout << std::setfill(' ');
-			}
+	if (Phases[p[SecPlayer].getPhase() - 1].getParts() > 1) {
+		do {
+			clear();
+			playerCards(player, Phases);
 			std::cout << std::endl;
-		}
-		std::cout << std::endl << "Welchem Teil m" << (char)148 << "chtest du eine Karte hinzuf" << (char)129 << "gen? ";
-		std::cin >> SecPart;
-	} while (SecPart < 1 || SecPart > Phases[p[SecPlayer].getPhase() - 1].getParts());
+			std::vector<std::vector<Card>> Cards = p[SecPlayer].getDownCards();
 
-	SecPart--;
+			for (int k = 0; k < Phases[p[SecPlayer].getPhase() - 1].getParts(); k++) {
+				std::cout << " " << k + 1 << " | ";
+
+				int Length = Cards[k].size();
+
+				/*Die Karten werden dargestellt*/
+				for (int l = 0; l < Length; l++) {
+					std::string Color = Cards[k][l].getColor();
+					std::string Number = std::to_string(Cards[k][l].getValue());
+
+					/*Jolly und Aussetzer korrektur*/
+					if (Number == "13") {
+						Number = "**";
+					}
+					if (Number == "14") {
+						Number = "!!";
+					}
+					std::cout << std::setfill('0');
+					std::cout << std::setw(1) << Color << std::setw(2) << Number << " | ";
+					std::cout << std::setfill(' ');
+				}
+				std::cout << std::endl;
+			}
+			std::cout << std::endl << "Welchem Teil m" << (char)148 << "chtest du eine Karte hinzuf" << (char)129 << "gen? (zum Abbrechen 0 eingeben) ";
+			std::cin >> SecPart;
+
+			if (SecPart == 0)
+				return;
+		} while (SecPart < 1 || SecPart > Phases[p[SecPlayer].getPhase() - 1].getParts());
+		SecPart--;
+	}
+	else
+		SecPart = 0;
 
 	/*Karte auswahl*/
 	do {
 		clear();
 		playerCards(player, Phases, true);
-		std::cout << "Welche Karte soll diesem Teil hinzugef" << (char)129 << "gt werden? ";
+		std::cout << "Welche Karte soll diesem Teil hinzugef" << (char)129 << "gt werden? (zum Abbrechen 0 eingeben) ";
 		std::cin >> SecCard;
-	} while (SecCard < 1 || SecCard > 12 || player.getCard(SecCard - 1).getValue() == 0);
+
+		if (SecCard == 0)
+			return;
+	} while (SecCard < 0 || SecCard > 12 || player.getCard(SecCard - 1).getValue() == 0);
 
 	SecCard--;
 
@@ -552,7 +564,7 @@ void expandDownCards(Player& player, std::vector<Player>& p, std::vector<Phase> 
 	}
 }
 
-Player finishPhase(Player p, std::vector<Phase> Phases) {
+void finishPhase(Player& p, std::vector<Phase> Phases) {
 	std::vector<int> CardPlaces;
 	std::vector<std::vector<Card>> Parts;
 	int Error = 0;
@@ -562,7 +574,7 @@ Player finishPhase(Player p, std::vector<Phase> Phases) {
 
 	for (int i = 0; i < Phases[p.getPhase() - 1].getParts(); i++) {
 		std::cout << "Geben Sie " << Phases[p.getPhase() - 1].getPartLength(i);
-		std::cout << " Karten " << PhaseTypeName(Phases[p.getPhase() - 1].getPartType(i) - 1) << std::endl;
+		std::cout << " Karten " << PhaseTypeName(Phases[p.getPhase() - 1].getPartType(i) - 1) << " (zum Abbrechen 0 eingeben)" << std::endl << std::endl;
 
 		for (int j = 0; j < Phases[p.getPhase() - 1].getPartLength(i); j++) {
 			int CN = 0;
@@ -571,8 +583,11 @@ Player finishPhase(Player p, std::vector<Phase> Phases) {
 				std::cout << "Karte " << j + 1 << ": ";
 				std::cin >> CN;
 				CardPlaces.push_back(CN);
+				if (CN == 0)
+					return;
 			}
 		}
+		std::cout << std::endl;
 	}
 
 	int counter = 0;
@@ -610,22 +625,23 @@ Player finishPhase(Player p, std::vector<Phase> Phases) {
 			/*Überprüfung der Fehlercodes*/
 			switch (Error) {
 				case 1: {
-					std::cout << std::endl << "2 oder mehr Karten wurden doppelt abgelegt!" << std::endl;
+					std::cout << "Fehler: 2 oder mehr Karten wurden doppelt abgelegt!" << std::endl << std::endl;
 					break;
 				}
 				case 2: {
-					std::cout << std::endl << "Phase beinhaltet falsche Karten!" << std::endl;
+					std::cout << "Fehler: Phase beinhaltet falsche Karten!" << std::endl << std::endl;
 					break;
 				}
 				case 3: {
-					std::cout << std::endl << "Kartenteil besteht aus zu vielen Jollys!" << std::endl;
+					std::cout << "Fehler: Kartenteil besteht aus zu vielen Jollys!" << std::endl << std::endl;
 					break;
 				}
 				case 4: {
-					std::cout << std::endl << "In den abgelegten Karten befindet sich ein Aussetzer!" << std::endl;
+					std::cout << "Fehler: In den abgelegten Karten befindet sich ein Aussetzer!" << std::endl << std::endl;
 					break;
 				}
 			}
+			waitForEnter();
 			break;
 		}
 	}
@@ -642,8 +658,6 @@ Player finishPhase(Player p, std::vector<Phase> Phases) {
 		}
 	}
 	std::cout << std::endl;
-
-	return p;
 }
 
 int checkPhase(int Type, std::vector<Card> Cards){

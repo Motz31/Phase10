@@ -19,7 +19,7 @@ int getCommand(Player,std::vector<Phase>,bool = false);
 bool checkEnd(Player);
 Player swapCards(Player, std::vector<Phase>);
 void expandDownCards(Player&, std::vector<Player>&, std::vector<Phase>);
-Player finishPhase(Player, std::vector<Phase>);
+void finishPhase(Player&, std::vector<Phase>);
 int checkPhase(int, std::vector<Card>);
 bool stopPlayer(Player, std::vector<Player>&, int, std::vector<Phase>);
 void endRound(std::vector<Player>&, std::stack<Card>&);
