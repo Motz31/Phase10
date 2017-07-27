@@ -106,17 +106,17 @@ int getCommand(Player p, std::vector<Phase> Phases, bool x){
 		std::cout << " 2 | Karte auf Ablagestapel legen (Zug beenden)" << std::endl;
 
 	std::cout << " 3 | Phasen der Spieler anzeigen" << std::endl;
-	std::cout << " 4 | Scores der Spieler anzeigen" << std::endl;
+	std::cout << " 4 | Punkte der Spieler anzeigen" << std::endl;
 	std::cout << " 5 | Abgelegte Karten anzeigen" << std::endl;
 
 	if (!End) {
 		if (p.getPhaseComplete())
-			std::cout << " 6 | abgelegte Phasen erweitern" << std::endl;
+			std::cout << " 6 | abgelegte Karten erweitern" << std::endl;
 		else
-			std::cout << " 6 | Phase ablegen" << std::endl;
+			std::cout << " 6 | Karten ablegen" << std::endl;
 	}
 	std::cout << " 7 | Spiel speichern" << std::endl;
-	std::cout << " 8 | zur" << (char)129 << "ck zum Hautpmen" << (char)129 << std::endl;
+	std::cout << " 8 | zur" << (char)129 << "ck zum Hauptmen" << (char)129 << std::endl;
 
 	std::cout << std::endl << "Auswahl: ";
 	int command = 0;
