@@ -215,9 +215,13 @@ int main() {
 				}
 				break;
 			}
-			case 3: { /*Einstellungen*/
+			case 3: {
+				showInstructions();
+				break;
+			}
+			case 4: { /*Einstellungen*/
 				int _IN = -1;
-				while (_IN != 4) {
+				do {
 					do {
 						_IN = 0;
 						showSettings(PhaseSet, ActiveStoppers, Autosave);
@@ -248,10 +252,11 @@ int main() {
 							break;
 						}
 					}
-				}
+				} while (_IN != 4);
+				INPUT = 0;
 				break;
 			}
-			case 4: { /*Spiel beenden*/
+			case 5: { /*Spiel beenden*/
 				return 0;
 				break;
 			}
