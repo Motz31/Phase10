@@ -96,23 +96,30 @@ int main() {
 												Players[ActivePlayer].setCard(i,Card(0,"-"));
 											}
 										}
-										else {
-											if (Players[ActivePlayer].getCard(10).getValue() == 0) {
-												std::cout << std::endl << "Das ist keine ablegbare Karte!" << std::endl << std::endl;
-												waitForEnter();
+										else { /*Karte auf Ablagestapel legen*/
+											int TCard = discardCard(Players[ActivePlayer],Phases);
+											if (TCard == 0) {
 												command = 0;
-											}
-											else if (Players[ActivePlayer].getCard(10).getValue() == 14) {
-												if (!stopPlayer(Players[ActivePlayer], Players, ActivePlayer,Phases)) {
-													command = 0;
-												}
-												else {
-													Players[ActivePlayer].setCard(10, Card(0, "-"));
-												}
+												break;
 											}
 											else {
-												dCards.push(Players[ActivePlayer].getCard(10));
-												Players[ActivePlayer].setCard(10, Card(0, "-"));
+												if (Players[ActivePlayer].getCard(TCard - 1).getValue() == 14) {
+													if (!stopPlayer(Players[ActivePlayer], Players, ActivePlayer, Phases))
+														command = 0;
+													else
+														Players[ActivePlayer].setCard(TCard - 1, Card(0, "-"));
+												}
+												else {
+													dCards.push(Players[ActivePlayer].getCard(TCard - 1));
+													Players[ActivePlayer].setCard(TCard - 1, Card(0, "-"));
+												}
+
+												if (command != 0) {
+													for (int i = TCard; i <= 11; i++) {
+														Players[ActivePlayer].setCard(i - 1, Players[ActivePlayer].getCard(i));
+													}
+													Players[ActivePlayer].setCard(10, Card(0, "-"));
+												}
 											}
 										}
 										break;

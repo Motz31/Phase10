@@ -1011,4 +1011,16 @@ bool saveGame(int AP, std::vector<Player> p, std::stack<Card> dCards, int Round,
 	return true;
 }
 
+int discardCard(Player p, std::vector<Phase> Phases){
+	int _IN = 0;
+	do {
+		clear();
+		playerCards(p, Phases, true);
+		std::cout << "Welche Karte soll abgelegt werden? (zum Abbrechen 0 eingeben) ";
+		std::cin >> _IN;
+		if (_IN == 0)
+			break;
+	} while(_IN < 0 || _IN > 11 || p.getCard(_IN - 1).getValue() == 0);
 
+	return _IN;
+}

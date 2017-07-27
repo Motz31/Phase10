@@ -24,3 +24,4 @@ int checkPhase(int, std::vector<Card>);
 bool stopPlayer(Player, std::vector<Player>&, int, std::vector<Phase>);
 void endRound(std::vector<Player>&, std::stack<Card>&);
 bool saveGame(int, std::vector<Player>, std::stack<Card>, int, std::vector<Phase>, int);
+int discardCard(Player, std::vector<Phase>);

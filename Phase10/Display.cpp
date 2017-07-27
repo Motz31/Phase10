@@ -392,14 +392,14 @@ void showInstructions() {
 					std::cout << std::setw(34) << " " << "Spielverlauf" << std::endl;
 					std::cout << "--------------------------------------------------------------------------------" << std::endl;
 
-					std::cout << "Zu beginn jeder Runde bekommt jeder Spieler 10 Karten, welche nur für den" << std::endl;
+					std::cout << "Zu beginn jeder Runde bekommt jeder Spieler 10 Karten, welche nur f" << (char)129 << "r den" << std::endl;
 					std::cout << "Spieler selbst sichtbar sind. Ziel einer Runde ist es mit den 10 Karten" << std::endl;
 					std::cout << "die dem Spieler zur verf" << (char)129 << "gung stehen seine aktuelle Phase damit zu bilden und" << std::endl;
 					std::cout << "abzulegen. Die restlichen Karten werden als verdeckter Stapel bereitgelegt." << std::endl;
 					std::cout << "Die oberste Karte des verdeckten Staples wird aufgedeckt und fungiert als" << std::endl;
 					std::cout << "offener Stapel. Der Spieler der an der Reihe ist muss als erstes entscheiden" << std::endl;
 					std::cout << "ob er eine Karte vom offenen oder verdeckten Stapel zieht. Dazu tippt er eine" << std::endl;
-					std::cout << "der Möglichkeiten (in diesem Fall 1 oder 2) ein und bestätigt die Auswahl mit" << std::endl;
+					std::cout << "der M" << (char)148 << "glichkeiten (in diesem Fall 1 oder 2) ein und best" << (char)132 << "tigt die Auswahl mit" << std::endl;
 					std::cout << "der Taste [ENTER].";
 					break;
 				}
@@ -409,13 +409,13 @@ void showInstructions() {
 					std::cout << "--------------------------------------------------------------------------------" << std::endl;
 
 					std::cout << "Jede Karte besitzt einen Zahlenwert und eine Farbe. Der Zahlenwert kann" << std::endl;
-					std::cout << "zwischen 1 und 12 liegen. Der Farbwert wird im Spiel wie folgt abgekürzt: " << std::endl;
+					std::cout << "zwischen 1 und 12 liegen. Der Farbwert wird im Spiel wie folgt abgek" << (char)129 << "rzt: " << std::endl;
 					std::cout << "\tRot = R" << std::endl;
 					std::cout << "\tGr" << (char)129 << "n = G" << std::endl;
 					std::cout << "\tViolett = P" << std::endl;
 					std::cout << "\tGelb = Y" << std::endl << std::endl;
-					std::cout << "Außerdem gibt es zwei Sonderkarten, den Aussetzer und den Jolly." << std::endl;
-					std::cout << "Mit dem Aussetzer kann man einen Spieler nach Wahl für eine Runde Aussetzen" << std::endl;
+					std::cout << "Au" << (char)225 << "erdem gibt es zwei Sonderkarten, den Aussetzer und den Jolly." << std::endl;
+					std::cout << "Mit dem Aussetzer kann man einen Spieler nach Wahl f" << (char)129 << "r eine Runde Aussetzen" << std::endl;
 					std::cout << "lassen. Ein Aussetzer wird im Spiel als Ausrufezeichen dargestellt (!!!)" << std::endl;
 					std::cout << "Der Jolly kann jede Farbe und jeden Zahlenwert annehmen und kann fehlende" << std::endl;
 					std::cout << "Karten ersetzten, Im Spiel wird der Jolly als Stern dargestellt (***)." << std::endl;
@@ -474,7 +474,7 @@ void showInstructions() {
 								std::cout << "--------------------------------------------------------------------------------" << std::endl;
 								std::cout << "Mit dieser Aktion kann der Spieler seine Karten sortieren." << std::endl;
 								std::cout << "Dazu tippt der Spieler die jeweiligen Nummern der Karten ein, welche den Platz" << std::endl;
-								std::cout << "miteinander tauschen sollen. Die Eingabe wird mit [ENTER] bestätigt.";
+								std::cout << "miteinander tauschen sollen. Die Eingabe wird mit [ENTER] best" << (char)132 << "tigt.";
 								break;
 							}
 							case 2: {
@@ -504,7 +504,7 @@ void showInstructions() {
 								std::cout << "--------------------------------------------------------------------------------";
 								std::cout << std::setw(26) << " " << "Karten der Spieler anzeigen" << std::endl;
 								std::cout << "--------------------------------------------------------------------------------" << std::endl;
-								std::cout << "Mit dieser Aktion kann sich der Spieler die Punktestände aller Spieler anzeigen" << std::endl;
+								std::cout << "Mit dieser Aktion kann sich der Spieler die Punktest" << (char)132 << "nde aller Spieler anzeigen" << std::endl;
 								std::cout << "lassen.";
 								break;
 							}
@@ -524,7 +524,7 @@ void showInstructions() {
 								std::cout << "Hat dieser seine Karten bereits abgelegt kann er seine eigenen oder andere mit" << std::endl;
 								std::cout << "dieser Aktion erweitern. Der Spieler muss die Phase wie auf dem Bildschirm" << std::endl;
 								std::cout << "beschrieben ablegen. Dazu gibt der Spieler die jeweilige Kartennummer an und" << std::endl;
-								std::cout << "bestätigt mit [ENTER]." << std::endl;
+								std::cout << "best" << (char)132 << "tigt mit [ENTER]." << std::endl;
 								std::cout << "Bei erfolgreicher Eingabe werden die Karten abgelegt und aus den Kandkarten" << std::endl;
 								std::cout << "entfernt. Wurde die Phase nicht korrekt abgelegt, wird eine Fehlermeldung mit" << std::endl;
 								std::cout << "dem Grund des Scheiterns ausgegeben." << std::endl << std::endl;
@@ -533,7 +533,7 @@ void showInstructions() {
 								std::cout << "Mit dieser Aktion kann der Spieler seine Handkarten bei bereits abgelegten" << std::endl;
 								std::cout << "Karten anlegen, wenn diese die Phase passend Fortsetzten. z.b. wenn die" << std::endl;
 								std::cout << "Phase \"7 Karten einer Farbe\" abgelegt wurde, muss die Phase mit derselben" << std::endl;
-								std::cout << "Farbe erweitert werden in der sie abgelegt wurde. Dies gilt genauso für die" << std::endl;
+								std::cout << "Farbe erweitert werden in der sie abgelegt wurde. Dies gilt genauso f" << (char)129 << "r die" << std::endl;
 								std::cout << "anderen Arten von Teilen, siehe Seite \"die Phasen\"";
 								break;
 							}
@@ -542,7 +542,7 @@ void showInstructions() {
 								std::cout << std::setw(32) << " " << "Spiel Speichern" << std::endl;
 								std::cout << "--------------------------------------------------------------------------------" << std::endl;
 								std::cout << "Mit dieser Aktion wird das Spiel zum aktuellen Zeitpunkt gespeichert damit zu" << std::endl;
-								std::cout << "einem späteren Zeitpunkt auch nach beenden des Programmes weitergespielt werden" << std::endl;
+								std::cout << "einem sp" << (char)132 << "teren Zeitpunkt auch nach beenden des Programmes weitergespielt werden" << std::endl;
 								std::cout << "kann.";
 
 								break;
@@ -551,7 +551,7 @@ void showInstructions() {
 								std::cout << "--------------------------------------------------------------------------------";
 								std::cout << std::setw(30) << " " << "zur" << (char)129 << "ck zum Hauptmen" << (char)129 << std::endl;
 								std::cout << "--------------------------------------------------------------------------------" << std::endl;
-								std::cout << "Mit dieser Aktion gelangt der Spieler zurück zum Hautpmenü. Allerdings wird" << std::endl;
+								std::cout << "Mit dieser Aktion gelangt der Spieler zur" << (char)129 << "ck zum Hautpmen" << (char)129 << ". Allerdings wird" << std::endl;
 								std::cout << "das Spiel dabei NICHT gespeichert.";
 								break;
 							}
