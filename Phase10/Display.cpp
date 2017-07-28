@@ -411,10 +411,14 @@ void showInstructions() {
 					std::cout << "die dem Spieler zur verf" << (char)129 << "gung stehen seine aktuelle Phase damit zu bilden und" << std::endl;
 					std::cout << "abzulegen. Die restlichen Karten werden als verdeckter Stapel bereitgelegt." << std::endl;
 					std::cout << "Die oberste Karte des verdeckten Staples wird aufgedeckt und fungiert als" << std::endl;
-					std::cout << "offener Stapel. Der Spieler der an der Reihe ist muss als erstes entscheiden" << std::endl;
-					std::cout << "ob er eine Karte vom offenen oder verdeckten Stapel zieht. Dazu tippt er eine" << std::endl;
+					std::cout << "offener Stapel. Der Spieler der an der Reihe ist muss zu beginn seines Zuges" << std::endl;
+					std::cout << "eine Karte vom offenen oder vom verdeckten Stapel ziehen. Dazu tippt er eine" << std::endl;
 					std::cout << "der M" << (char)148 << "glichkeiten (in diesem Fall 1 oder 2) ein und best" << (char)132 << "tigt die Auswahl mit" << std::endl;
-					std::cout << "der Taste [ENTER].";
+					std::cout << "der Taste [ENTER]. Dannach kann der Spieler seine Karten mit den 8 Aktionen" << std::endl;
+					std::cout << "(siehe Spieler Aktionen) verwalten. Mit der Aktion \"Karte auf Ablagestapel" << std::endl;
+					std::cout << "legen\" beendet der Spieler seinen Zug und der n" << (char)132 << "chste Spieler ist an der Reihe." << std::endl;
+					std::cout << "Hat ein Spieler keine Karten mehr, wird die Runde beendet, die Punkte werden" << std::endl;
+					std::cout << "zusammengez" << (char)132 << "hlt und alle Abgelegten und alle Handkarten werden entfernt." << std::endl;
 					break;
 				}
 				case 3: {
@@ -430,7 +434,7 @@ void showInstructions() {
 					std::cout << "\tGelb = Y" << std::endl << std::endl;
 					std::cout << "Au" << (char)225 << "erdem gibt es zwei Sonderkarten, den Aussetzer und den Jolly." << std::endl;
 					std::cout << "Mit dem Aussetzer kann man einen Spieler nach Wahl f" << (char)129 << "r eine Runde Aussetzen" << std::endl;
-					std::cout << "lassen. Ein Aussetzer wird im Spiel als Ausrufezeichen dargestellt (!!!)" << std::endl;
+					std::cout << "lassen. Ein Aussetzer wird im Spiel als Ausrufezeichen dargestellt (!!!)" << std::endl << std::endl;
 					std::cout << "Der Jolly kann jede Farbe und jeden Zahlenwert annehmen und kann fehlende" << std::endl;
 					std::cout << "Karten ersetzten, Im Spiel wird der Jolly als Stern dargestellt (***)." << std::endl;
 					std::cout << "Der Jolly kann jedoch nicht mehr ersetzt werden sobald die Phase abgelegt" << std::endl;
@@ -443,13 +447,15 @@ void showInstructions() {
 					std::cout << "--------------------------------------------------------------------------------" << std::endl;
 
 					std::cout << "Jede Phase kann aus ein oder mehreren teilen bestehen. Dabei gibt es vier" << std::endl;
-					std::cout << "Verschiedene Arten von Teilen:" << std::endl;
+					std::cout << "verschiedene Arten von Teilen:" << std::endl;
 					std::cout << "\t1. Gleiche Zahl" << std::endl;
 					std::cout << "\t2. Gleiche Farbe" << std::endl;
 					std::cout << "\t3. Zahlenfolge" << std::endl;
 					std::cout << "\t4. Zahlenfolge gleicher Farbe" << std::endl << std::endl;
+					std::cout << "Bei Phasen gleicher Zahlen oder gleicher Farben darf mindestens eine Karte kein" << std::endl;
+					std::cout << "Jolly sein, bei Zahlenfolgen m" << (char)129 << "ssen es mindestens zwei sein." << std::endl << std::endl;
 					std::cout << "Alle Karten eines Teils m" << (char)129 << "ssen der vorgegebenen Art des Teils entsprechen." << std::endl;
-					std::cout << "Ist eine Phase komplett kann sie offen f" << (char)129 << "r alle Spieler abgelegt werden" << std::endl;
+					std::cout << "Ist eine Phase komplett kann sie offen f" << (char)129 << "r alle Spieler abgelegt werden." << std::endl;
 					std::cout << "Durch das ablegen der Phase ist der Spieler berechtigt in der n" << (char)132 << "chsten Runden" << std::endl;
 					std::cout << "mit der n" << (char)132 << "chsten Phase fortzusetzen. ";
 					break;
@@ -500,7 +506,7 @@ void showInstructions() {
 								std::cout << "auf dem ausgew" << (char)132 << "hltem Platz ein Aussetzter, wird der Spieler gefragt welcher" << std::endl;
 								std::cout << "andere Spieler diesen Aussetzter erhalten soll. Hat der ausgew" << (char)132 << "hlte Spieler" << std::endl;
 								std::cout << "bereits einen Aussetzter von einem anderen Spieler erhalten, so kann dieser" << std::endl;
-								std::cout << "nicht noch einen erhalten und ein anderer Spieler muss gew" << (char)132 << "hlt werden." << std::endl;
+								std::cout << "nicht noch einen erhalten und ein anderer Spieler muss gew" << (char)132 << "hlt werden." << std::endl << std::endl;
 								std::cout << "Besitzt der Spieler nur noch eine Karte, dann kann er mit der" << std::endl;
 								std::cout << "Aktion \"2 | Runde beenden\" die Runde beenden. Besitz der Spieler jedoch noch" << std::endl;
 								std::cout << "mehrere Karten wir sein Zug beendet und der n" << (char)132 << "chste Spieler kommt an die Reihe.";
@@ -526,8 +532,8 @@ void showInstructions() {
 								std::cout << "--------------------------------------------------------------------------------";
 								std::cout << std::setw(27) << " " << "Abgelegte Karten anzeigen" << std::endl;
 								std::cout << "--------------------------------------------------------------------------------" << std::endl;
-								std::cout << "Mit dieser Aktion kann sich der Spieler die Abgelegten Karten der Spieler anzeigen" << std::endl;
-								std::cout << "lassen.";
+								std::cout << "Mit dieser Aktion kann sich der Spieler die Abgelegten Karten der Spieler" << std::endl;
+								std::cout << "anzeigen lassen.";
 								break;
 							}
 							case 6: {
