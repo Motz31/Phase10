@@ -14,3 +14,4 @@ std::vector<Player> createPlayers();
 std::vector<Card> generateCards(bool);
 std::vector<Phase> createPhases(int);
 bool loadGame(int&, std::vector<Player>&, std::stack<Card>&, int&, std::vector<Phase>&);
+bool configureGame(int&, bool&, int&);

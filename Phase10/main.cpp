@@ -50,6 +50,8 @@ int main() {
 				}
 				else {
 					Phases = createPhases(PhaseSet);
+					if (configureGame(PhaseSet, ActiveStoppers, Autosave))
+						break;
 					Players = createPlayers();
 				}
 				
@@ -226,44 +228,7 @@ int main() {
 				showInstructions();
 				break;
 			}
-			case 4: { /*Einstellungen*/
-				int _IN = -1;
-				do {
-					do {
-						_IN = 0;
-						showSettings(PhaseSet, ActiveStoppers, Autosave);
-
-						cin >> _IN;
-					} while (_IN < 0 || _IN > 4);
-
-					switch (_IN) {
-						case 1: {
-							if (PhaseSet + 1 > 1)
-								PhaseSet = 0;
-							else
-								PhaseSet++;
-							break;
-						}
-						case 2: {
-							ActiveStoppers = !ActiveStoppers;
-							break;
-						}
-						case 3: {
-							if (Autosave + 1 > 2)
-								Autosave = 0;
-							else
-								Autosave++;
-							break;
-						}
-						case 4: {
-							break;
-						}
-					}
-				} while (_IN != 4);
-				INPUT = 0;
-				break;
-			}
-			case 5: { /*Spiel beenden*/
+			case 4: { /*Spiel beenden*/
 				return 0;
 				break;
 			}

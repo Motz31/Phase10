@@ -33,8 +33,7 @@ void showMM() {
 	std::cout << "                           | 1 |  Neues Spiel  | 1 |" << std::endl;
 	std::cout << "                           | 2 |  Spiel laden  | 2 |" << std::endl;
 	std::cout << "                           | 3 |   Anleitung   | 3 |" << std::endl;
-	std::cout << "                           | 4 | Einstellungen | 4 |" << std::endl;
-	std::cout << "                           | 5 | Spiel beenden | 5 |" << std::endl << std::endl;
+	std::cout << "                           | 4 | Spiel beenden | 4 |" << std::endl << std::endl;
 	std::cout << "                                   Auswahl: ";
 }
 
@@ -233,7 +232,7 @@ void RoundEndScreen(Player player, std::vector<Player> p, int Round, std::vector
 	waitForEnter();
 }
 
-void showSettings(int PS, bool Stopper, int Autosave){
+void showConfig(int PS, bool Stopper, int Autosave, bool NRs){
 	int Length = 0;
 	std::string Text[4];
 	std::string PhaseSets[2] = { "Klassik", "Master" };
@@ -257,10 +256,18 @@ void showSettings(int PS, bool Stopper, int Autosave){
 	Length += 2;
 
 	for (int i = 0; i < 4; i++) {
-		if((Length - Text[i].length()) % 2)
-			text << "| " << i + 1 << " |" << std::setw((Length - Text[i].length()) / 2) << " " << Text[i] << std::setw((Length - Text[i].length()) / 2 + 1) << " " << "| " << i + 1 << " |";
-		else
-			text << "| " << i+1 << " |" << std::setw((Length - Text[i].length())/2) << " " << Text[i] << std::setw((Length - Text[i].length()) / 2) << " " << "| " << i+1 << " |";
+		if (NRs) {
+			if ((Length - Text[i].length()) % 2)
+				text << "| " << i + 1 << " |" << std::setw((Length - Text[i].length()) / 2) << " " << Text[i] << std::setw((Length - Text[i].length()) / 2 + 1) << " " << "| " << i + 1 << " |";
+			else
+				text << "| " << i + 1 << " |" << std::setw((Length - Text[i].length()) / 2) << " " << Text[i] << std::setw((Length - Text[i].length()) / 2) << " " << "| " << i + 1 << " |";
+		}
+		else {
+			if ((Length - Text[i].length()) % 2)
+				text << std::setw((Length - Text[i].length()) / 2) << " " << Text[i] << std::setw((Length - Text[i].length()) / 2 + 1) << " ";
+			else
+				text << std::setw((Length - Text[i].length()) / 2) << " " << Text[i] << std::setw((Length - Text[i].length()) / 2) << " ";
+		}
 		Text[i] = text.str();
 		text.str("");
 	}
@@ -268,15 +275,22 @@ void showSettings(int PS, bool Stopper, int Autosave){
 	clear();
 	showLogo();
 	std::cout << "--------------------------------------------------------------------------------";
-	std::cout << "                                 Einstellungen" << std::endl;
-	std::cout << "--------------------------------------------------------------------------------";
-	std::cout << std::endl;
+	std::cout << std::setw(33) << " " << "Konfiguration" << std::endl;
+	std::cout << "--------------------------------------------------------------------------------" << std::endl;
 
-	for (int i = 0; i < 4; i++) {
-		std::cout << std::setw((80 - Length - 10) / 2) << " " << Text[i] << std::endl;
+	if(NRs)
+		for (int i = 0; i < 4; i++)
+			std::cout << std::setw((80 - Length - 10) / 2) << " " << Text[i] << std::endl;
+	else
+		for (int i = 0; i < 3; i++)
+			std::cout << std::setw((80 - Length) / 2) << " " << Text[i] << std::endl;
+
+	if (!NRs) {
+		std::cout << std::endl << "--------------------------------------------------------------------------------" << std::endl;
+		std::cout << std::setw(29) << " " << "| 1 |   weiter   | 1 |" << std::endl;
+		std::cout << std::setw(29) << " " << "| 2 |   " << (char)132 << "ndern   | 2 |" << std::endl;
+		std::cout << std::setw(29) << " " << "| 3 |  abbrechen | 3 |" << std::endl << std::endl;
 	}
-
-	std::cout << std::endl << "                                   Auswahl: ";
 }
 
 void endGame(std::vector<Player> p) {
@@ -571,3 +585,4 @@ void showInstructions() {
 	} while (true);
 	waitForEnter();
 }
+

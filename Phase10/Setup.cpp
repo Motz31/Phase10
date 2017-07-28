@@ -254,3 +254,64 @@ bool loadGame(int& LAP, std::vector<Player>& Lp, std::stack<Card>& LdCards, int&
 	}
 	return true;
 }
+
+bool configureGame(int& PS, bool& Stopper, int& AS) {
+	int _IN = 0;
+	do {
+		showConfig(PS, Stopper, AS, false);
+
+		std::cout << std::endl << "                                   Auswahl: ";
+		std::cin >> _IN;
+
+		if (_IN < 1 || _IN > 4)
+			continue;
+		else {
+			switch (_IN) {
+				case 1: {
+					return false;
+					break;
+				}
+				case 2: {
+					int _IN2 = -1;
+					do {
+						do {
+							_IN2 = 0;
+							showConfig(PS, Stopper, AS);
+							std::cout << std::endl << "                                   Auswahl: ";
+							std::cin >> _IN2;
+						} while (_IN2 < 0 || _IN > 4);
+
+						switch (_IN2) {
+							case 1: {
+								if (PS + 1 > 1)
+									PS = 0;
+								else
+									PS++;
+								break;
+							}
+							case 2: {
+								Stopper = !Stopper;
+								break;
+							}
+							case 3: {
+								if (AS + 1 > 2)
+									AS = 0;
+								else
+									AS++;
+								break;
+							}
+							case 4: {
+								break;
+							}
+						}
+					} while (_IN2 != 4);
+					break;
+				}
+				case 3: {
+					return true;
+					break;
+				}
+			}
+		}
+	} while (true);
+}

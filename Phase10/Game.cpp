@@ -619,7 +619,7 @@ void finishPhase(Player& p, std::vector<Phase> Phases) {
 	/*Überprüft ob Phase korrekt abgelegt wurde*/
 	for (int i = 0; i < Phases[p.getPhase() - 1].getParts(); i++) {
 		if (!Error)
-			Error = checkPhase(Phases[p.getPhase() - 1].getPartType(i), Parts[i]);
+			Error = checkPhase(Phases[p.getPhase() - 1].getPartType(i), Phases[p.getPhase() - 1].getPartLength(i), Parts[i]);
 
 		if (Error) {
 			/*Überprüfung der Fehlercodes*/
@@ -638,6 +638,10 @@ void finishPhase(Player& p, std::vector<Phase> Phases) {
 				}
 				case 4: {
 					std::cout << "Fehler: In den abgelegten Karten befindet sich ein Aussetzer!" << std::endl << std::endl;
+					break;
+				}
+				default: {
+					std::cout << "Fehler: Zahlenfolge unterschreitet 1 oder " << (char)129 << "berschreitet 12" << std::endl << std::endl;
 					break;
 				}
 			}
@@ -660,7 +664,7 @@ void finishPhase(Player& p, std::vector<Phase> Phases) {
 	std::cout << std::endl;
 }
 
-int checkPhase(int Type, std::vector<Card> Cards){
+int checkPhase(int Type, int Lenght, std::vector<Card> Cards){
 	switch (Type) {
 		case 1: { /* Gleiche Zahl */
 			int JC = 0;
@@ -685,7 +689,7 @@ int checkPhase(int Type, std::vector<Card> Cards){
 					else if (Number == 0)
 						Number = Cards[i].getValue();
 					else if (Number != Cards[i].getValue())
-						return 1;
+						return 2;
 				}
 			}
 			return 0;
@@ -714,7 +718,7 @@ int checkPhase(int Type, std::vector<Card> Cards){
 					else if (Color == "")
 						Color = Cards[i].getColor();
 					else if (Color != Cards[i].getColor())
-						return 1;
+						return 2;
 				}
 			}
 			return 0;
@@ -799,6 +803,23 @@ int checkPhase(int Type, std::vector<Card> Cards){
 					}
 					else
 						return 2;
+				}
+			}
+
+			CardNumberCheck = 0;
+			for (int i = 0; i < Cards.size(); i++) {
+				if (Cards[i].getValue() == 13)
+					continue;
+				else {
+					CardNumberCheck = Cards[i].getValue();
+					if (CardNumberCheck - i < 1 && Direction == 1)
+						return 5;
+					else if (CardNumberCheck + i > 12 && Direction == 2)
+						return 5;
+					else if (CardNumberCheck + Lenght - i - 1 > 12 && Direction == 1)
+						return 5;
+					else if (CardNumberCheck - Lenght + i + 1 < 1 && Direction == 2)
+						return 5;
 				}
 			}
 			return 0;
